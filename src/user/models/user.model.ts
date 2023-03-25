@@ -16,7 +16,7 @@ export class User {
   password: string;
 
   @Prop({ default: false })
-  isAdmin: string;
+  isAdmin: boolean;
 
   @Prop({ default: [] })
   favorites?: [string];

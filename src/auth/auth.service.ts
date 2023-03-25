@@ -28,12 +28,17 @@ export class AuthService {
     const hash = await bcrypt.hash(dto.password, salt);
 
     const newUser = new this.userModel({ email: dto.email, password: hash });
-
-    return newUser.save();
+    const tokens = await this.generateTokens(newUser._id);
+    newUser.save();
+    return { user: this.returnUser(newUser), ...tokens };
   }
 
   async login(dto: AuthDto) {
-    return this.validateUser(dto);
+    const user = await this.validateUser(dto);
+
+    const tokens = await this.generateTokens(user._id);
+
+    return { user: this.returnUser(user), ...tokens };
   }
 
   async validateUser(dto: AuthDto) {
@@ -63,5 +68,13 @@ export class AuthService {
     });
 
     return { accessToken, refreshToken };
+  }
+
+  returnUser(user: User) {
+    return {
+      _id: user._id,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    };
   }
 }
