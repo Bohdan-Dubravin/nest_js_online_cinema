@@ -13,7 +13,8 @@ export class UpdateUserDto {
 
   @IsString()
   @MinLength(6)
-  password: string;
+  @IsOptional()
+  password?: string;
 
   @IsBoolean()
   @IsOptional()
