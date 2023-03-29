@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { ForbiddenException } from '@nestjs/common';
 import { Genre, GenreDocument } from './models/genre.model';
 import { CreateGenreDto } from './dto/create-genre.dto';
 

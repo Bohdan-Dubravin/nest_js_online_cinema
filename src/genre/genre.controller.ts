@@ -1,5 +1,15 @@
-import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
-import { isValidObjectId } from 'mongoose';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Patch,
+  Query,
+  Post,
+} from '@nestjs/common';
+
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { IdValidPipe } from 'src/user/pipes/id-validetion.pipe';
 import { CreateGenreDto } from './dto/create-genre.dto';
@@ -30,6 +40,12 @@ export class GenreController {
     return this.genreService.getGenreById(id);
   }
 
+  @Post()
+  @Auth('admin')
+  async createGenre() {
+    return this.genreService.createGenre();
+  }
+
   @Patch(':id')
   @Auth('admin')
   async updateGenre(
@@ -37,5 +53,12 @@ export class GenreController {
     @Body() dto: CreateGenreDto,
   ) {
     return this.genreService.updateGenre(id, dto);
+  }
+
+  @Delete(':id')
+  @HttpCode(200)
+  @Auth('admin')
+  async deleteById(@Param('id', IdValidPipe) id: string) {
+    return this.genreService.deleteGenre(id);
   }
 }
