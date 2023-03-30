@@ -1,7 +1,7 @@
 # compiled output
 /dist
 /node_modules
-
+/backend-advanced-main
 # Logs
 logs
 *.log
@@ -34,3 +34,4 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 node_modules
+backend-advanced-main
