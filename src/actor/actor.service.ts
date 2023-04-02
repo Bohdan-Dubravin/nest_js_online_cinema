@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Actor, ActorDocument } from './models/actor.model';
-import { GenreDocument } from 'src/genre/models/genre.model';
+
 import { CreateActorDto } from './dto/create-actor.dto';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class ActorService {
 
   async getActorBySlug(slug: string) {
     const actor = await this.actorModel.findOne({ slug });
-
+    if (!actor) throw new NotFoundException('Actor not found');
     return actor;
   }
 

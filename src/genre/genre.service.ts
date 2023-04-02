@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Genre, GenreDocument } from './models/genre.model';
@@ -12,7 +12,7 @@ export class GenreService {
 
   async getGenreBySlug(slug: string) {
     const genre = await this.genreModel.findOne({ slug });
-
+    if (!genre) throw new NotFoundException('Genre not found');
     return genre;
   }
 
