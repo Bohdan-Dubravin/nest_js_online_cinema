@@ -13,6 +13,8 @@ import { Auth } from 'src/auth/decorators/auth.decorator';
 import { User } from './decorators/user.decorator';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { IdValidPipe } from './pipes/id-validetion.pipe';
+import { Types } from 'mongoose';
+import { UserDocument } from './models/user.model';
 
 @Controller('users')
 export class UserController {
@@ -29,6 +31,24 @@ export class UserController {
   @HttpCode(200)
   async editUser(@User('_id') userId: string, @Body() dto: UpdateUserDto) {
     return this.userService.updateProfile(userId, dto);
+  }
+
+  @Get('user-favorites')
+  @Auth()
+  async toggleFavorites(
+    @User() user: UserDocument,
+    @Body('movieId', IdValidPipe) movieId: Types.ObjectId,
+  ) {
+    return this.userService.toggleFavorites(movieId, user);
+  }
+
+  @Get('user-favorites')
+  @Auth()
+  async getFavoriteMovies(
+    @User('_id') userId: Types.ObjectId,
+    @Body() dto: UpdateUserDto,
+  ) {
+    return this.userService.getFavoriteMovies(userId);
   }
 
   @Patch('update-admin/:id')

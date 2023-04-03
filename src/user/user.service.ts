@@ -69,7 +69,22 @@ export class UserService {
   async toggleFavorites(movieId: Types.ObjectId, user: User) {
     const { _id, favorites } = user;
     await this.userModel.findByIdAndUpdate(_id, {
-      favorites: favorites.includes(movieId),
+      favorites: favorites.includes(movieId)
+        ? favorites.filter((id) => String(id) !== String(movieId))
+        : [...favorites, movieId],
     });
+  }
+
+  async getFavoriteMovies(_id: Types.ObjectId) {
+    return this.userModel
+      .findById(_id, 'favorites')
+      .populate({
+        path: 'favorites',
+        populate: {
+          path: 'genres',
+        },
+      })
+      .exec()
+      .then((data) => data.favorites);
   }
 }
