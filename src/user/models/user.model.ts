@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument, Types } from 'mongoose';
+import { Movie } from 'src/movie/models/movie.model';
 
 // export interface user {}
 
@@ -18,12 +19,8 @@ export class User {
   @Prop({ default: false })
   isAdmin: boolean;
 
-  @Prop({ default: [] })
-  favorites?: [string];
-
-  createdAt: Date;
-
-  updatedAt: Date;
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Movie.name }] })
+  favorites?: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

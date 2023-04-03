@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User, UserDocument } from './models/user.model';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ForbiddenException } from '@nestjs/common';
@@ -64,5 +64,12 @@ export class UserService {
 
   async deleteUser(id: string) {
     return this.userModel.findByIdAndDelete(id).exec();
+  }
+
+  async toggleFavorites(movieId: Types.ObjectId, user: User) {
+    const { _id, favorites } = user;
+    await this.userModel.findByIdAndUpdate(_id, {
+      favorites: favorites.includes(movieId),
+    });
   }
 }

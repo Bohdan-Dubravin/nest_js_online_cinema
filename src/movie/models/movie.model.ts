@@ -33,7 +33,7 @@ export class Movie {
   rating?: number;
 
   @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Genre.name }])
-  genres: [Genre];
+  genres: Genre[];
 
   @Prop({ default: 0 })
   countOpened?: number;
@@ -42,7 +42,7 @@ export class Movie {
   videoUrl: string;
 
   @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Actor.name }])
-  actors: [Actor];
+  actors: Actor[];
 
   @Prop({ unique: true })
   slug: string;
