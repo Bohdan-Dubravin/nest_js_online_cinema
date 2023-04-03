@@ -11,10 +11,11 @@ import {
 } from '@nestjs/common';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { IdValidPipe } from 'src/user/pipes/id-validetion.pipe';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MovieService } from './movie.service';
 
 @Controller('movies')
-export class ActorController {
+export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
   @Get('slug/:slug')
@@ -27,36 +28,55 @@ export class ActorController {
     return this.movieService.getMovieByActor(actorId);
   }
 
-  @Get()
-  async getAllActors(@Query('searchTerm') searchTerm?: string) {
-    return this.movieService.getAllActors(searchTerm);
+  @Get('genres')
+  async getByGenres(@Body() genres: string[]) {
+    return this.movieService.getMovieByGenres(genres);
   }
+
+  @Get('popular')
+  async getMostPopular() {
+    return this.movieService.getMostPopularMovies();
+  }
+
+  @Post('update-count')
+  @HttpCode(200)
+  async updateCount(@Body() slug: string) {
+    return this.movieService.updateCountOpened(slug);
+  }
+
+  @Get()
+  async getAllMovies(@Query('searchTerm') searchTerm?: string) {
+    return this.movieService.getAllMovies(searchTerm);
+  }
+
+  //admin routes
 
   @Get(':id')
   @Auth('admin')
   async getById(@Param('id', IdValidPipe) id: string) {
-    return this.movieService.getActorById(id);
+    return this.movieService.getMovieById(id);
   }
 
   @Post()
   @Auth('admin')
+  @HttpCode(200)
   async createGenre() {
-    return this.movieService.createActor();
+    return this.movieService.createMovie();
   }
 
   @Patch(':id')
   @Auth('admin')
   async updateGenre(
     @Param('id', IdValidPipe) id: string,
-    @Body() dto: CreateActorDto,
+    @Body() dto: UpdateMovieDto,
   ) {
-    return this.movieService.updateActor(id, dto);
+    return this.movieService.updateMovie(id, dto);
   }
 
   @Delete(':id')
   @HttpCode(200)
   @Auth('admin')
   async deleteById(@Param('id', IdValidPipe) id: string) {
-    return this.movieService.deleteActor(id);
+    return this.movieService.deleteMovie(id);
   }
 }
