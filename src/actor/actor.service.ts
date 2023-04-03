@@ -36,8 +36,16 @@ export class ActorService {
     }
 
     return this.actorModel
-      .find()
-      .select('-__v')
+      .aggregate()
+      .match(options)
+      .lookup({
+        from: 'Movie',
+        foreignField: 'actors',
+        localField: '_id',
+        as: 'movies',
+      })
+      .project({ _v: 0, updatedAt: 0 })
+      .addFields({ countMovies: { $size: '$movies' } })
       .sort({ createdAt: 'desc' })
       .exec();
   }

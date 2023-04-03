@@ -32,7 +32,7 @@ export class Movie {
   @Prop({ default: 4.0 })
   rating?: number;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Genre.name })
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Genre.name }])
   genres: [Genre];
 
   @Prop({ default: 0 })
@@ -41,7 +41,7 @@ export class Movie {
   @Prop({ unique: true })
   videoUrl: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Actor.name })
+  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Actor.name }])
   actors: [Actor];
 
   @Prop({ unique: true })
