@@ -18,8 +18,13 @@ export class ActorController {
   constructor(private readonly movieService: MovieService) {}
 
   @Get('slug/:slug')
-  async getActor(@Param('slug') slug: string) {
+  async getBySlug(@Param('slug') slug: string) {
     return this.movieService.getMovieBySlug(slug);
+  }
+
+  @Get('actor/:actorId')
+  async getByActor(@Param('actorId') actorId: string) {
+    return this.movieService.getMovieByActor(actorId);
   }
 
   @Get()
