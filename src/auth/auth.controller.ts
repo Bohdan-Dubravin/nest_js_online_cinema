@@ -19,7 +19,7 @@ export class AuthController {
     return this.authService.login(dto);
   }
 
-  @Get('refresh-tokens')
+  @Post('refresh-tokens')
   @HttpCode(200)
   async refreshTokens(@Body() dto: RefreshTokenDto) {
     return this.authService.refreshTokens(dto);
