@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument, Types } from 'mongoose';
 import { Actor, ActorDocument } from 'src/actor/models/actor.model';
 import { Genre, GenreDocument } from 'src/genre/models/genre.model';
 
@@ -32,8 +32,8 @@ export class Movie {
   @Prop({ default: 4.0 })
   rating?: number;
 
-  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Genre.name }])
-  genres: Genre[];
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Genre.name }] })
+  genres: Types.ObjectId[];
 
   @Prop({ default: 0 })
   countOpened?: number;
@@ -41,8 +41,8 @@ export class Movie {
   @Prop({ unique: true })
   videoUrl: string;
 
-  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Actor.name }])
-  actors: Actor[];
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Actor.name }] })
+  actors: Types.ObjectId[];
 
   @Prop({ unique: true })
   slug: string;

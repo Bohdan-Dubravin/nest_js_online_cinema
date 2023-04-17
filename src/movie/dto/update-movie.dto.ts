@@ -3,6 +3,7 @@ import {
   IsBoolean,
   IsNumber,
   IsObject,
+  IsOptional,
   IsString,
 } from 'class-validator';
 
@@ -28,7 +29,8 @@ export class UpdateMovieDto {
   title: string;
 
   @IsString()
-  description: string;
+  @IsOptional()
+  description?: string;
 
   @IsObject()
   parameters?: Parameter;
