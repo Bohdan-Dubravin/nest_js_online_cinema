@@ -13,6 +13,7 @@ import { Auth } from 'src/auth/decorators/auth.decorator';
 import { IdValidPipe } from 'src/user/pipes/id-validetion.pipe';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MovieService } from './movie.service';
+import { Types } from 'mongoose';
 
 @Controller('movies')
 export class MovieController {
@@ -23,13 +24,13 @@ export class MovieController {
     return this.movieService.getMovieBySlug(slug);
   }
 
-  @Get('actor/:actorId')
-  async getByActor(@Param('actorId') actorId: string) {
+  @Post('actor/:actorId')
+  async getByActor(@Param('actorId', IdValidPipe) actorId: Types.ObjectId) {
     return this.movieService.getMovieByActor(actorId);
   }
 
-  @Get('genres')
-  async getByGenres(@Body() genres: string[]) {
+  @Post('genres')
+  async getByGenres(@Body('genreIds', IdValidPipe) genres: Types.ObjectId[]) {
     return this.movieService.getMovieByGenres(genres);
   }
 
