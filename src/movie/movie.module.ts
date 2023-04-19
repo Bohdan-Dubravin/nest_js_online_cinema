@@ -12,5 +12,6 @@ import { Movie, MovieSchema } from './models/movie.model';
     MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),
     ConfigModule,
   ],
+  exports: [MovieService],
 })
 export class MovieModule {}

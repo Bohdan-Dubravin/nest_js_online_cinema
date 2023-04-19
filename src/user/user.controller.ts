@@ -33,7 +33,7 @@ export class UserController {
     return this.userService.updateProfile(userId, dto);
   }
 
-  @Get('user-favorites')
+  @Get('profile/favorites')
   @Auth()
   async toggleFavorites(
     @User() user: UserDocument,

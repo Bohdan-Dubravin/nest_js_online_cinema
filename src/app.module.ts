@@ -9,6 +9,7 @@ import { GenreModule } from './genre/genre.module';
 import { FilesModule } from './files/files.module';
 import { ActorModule } from './actor/actor.module';
 import { MovieModule } from './movie/movie.module';
+import { RatingModule } from './rating/rating.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { MovieModule } from './movie/movie.module';
     FilesModule,
     ActorModule,
     MovieModule,
+    RatingModule,
   ],
 })
 export class AppModule {}
