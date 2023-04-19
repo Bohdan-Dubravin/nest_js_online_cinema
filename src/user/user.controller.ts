@@ -75,7 +75,7 @@ export class UserController {
     return this.userService.getUsersCount();
   }
 
-  @Get('user/:id')
+  @Get('/:id')
   @Auth('admin')
   async getUser(@Param('id', IdValidPipe) id: string) {
     return this.userService.getUseRById(id);

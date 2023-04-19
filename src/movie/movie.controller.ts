@@ -24,7 +24,7 @@ export class MovieController {
     return this.movieService.getMovieBySlug(slug);
   }
 
-  @Post('actor/:actorId')
+  @Get('actor/:actorId')
   async getByActor(@Param('actorId', IdValidPipe) actorId: Types.ObjectId) {
     return this.movieService.getMovieByActor(actorId);
   }
