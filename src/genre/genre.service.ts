@@ -1,13 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Genre, GenreDocument } from './models/genre.model';
 import { CreateGenreDto } from './dto/create-genre.dto';
+import { MovieService } from 'src/movie/movie.service';
 
 @Injectable()
 export class GenreService {
   constructor(
     @InjectModel(Genre.name) private genreModel: Model<GenreDocument>,
+    private readonly movieService: MovieService,
   ) {}
 
   async getGenreBySlug(slug: string) {
@@ -45,6 +47,24 @@ export class GenreService {
 
   async getCollections() {
     const genres = await this.getAllGenres();
+
+    const collections = await Promise.all(
+      genres.map(async (genre) => {
+        const moviesByGenre = await this.movieService.getMovieByGenres([
+          new Types.ObjectId(genre._id),
+        ]);
+
+        const result = {
+          _id: String(genre._id),
+          image: moviesByGenre[0].bigPoster,
+          slug: genre.slug,
+          title: genre.name,
+        };
+        return result;
+      }),
+    );
+
+    return collections;
   }
 
   // Admin functions

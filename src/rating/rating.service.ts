@@ -36,7 +36,7 @@ export class RatingService {
 
     const averageRating = await this.averageRatingOfMovie(movieId);
 
-    await this.movieService;
+    await this.movieService.updateRating(movieId, averageRating);
 
     return newRating;
   }
