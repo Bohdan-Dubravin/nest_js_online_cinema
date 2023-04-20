@@ -6,6 +6,7 @@ import {
   HttpCode,
   Param,
   Patch,
+  Post,
   Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -33,8 +34,9 @@ export class UserController {
     return this.userService.updateProfile(userId, dto);
   }
 
-  @Get('profile/favorites')
+  @Post('profile/favorites')
   @Auth()
+  @HttpCode(200)
   async toggleFavorites(
     @User() user: UserDocument,
     @Body('movieId', IdValidPipe) movieId: Types.ObjectId,
@@ -44,10 +46,7 @@ export class UserController {
 
   @Get('user-favorites')
   @Auth()
-  async getFavoriteMovies(
-    @User('_id') userId: Types.ObjectId,
-    @Body() dto: UpdateUserDto,
-  ) {
+  async getFavoriteMovies(@User('_id') userId: Types.ObjectId) {
     return this.userService.getFavoriteMovies(userId);
   }
 

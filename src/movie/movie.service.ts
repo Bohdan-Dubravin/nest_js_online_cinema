@@ -67,7 +67,11 @@ export class MovieService {
 
   async updateCountOpened(slug: string) {
     const movie = await this.movieModel
-      .findOneAndUpdate({ slug }, { $inc: { countOpened: 1 } }, { new: true })
+      .findOneAndUpdate(
+        { slug: slug },
+        { $inc: { countOpened: 1 } },
+        { new: true },
+      )
       .exec();
 
     if (!movie) throw new NotFoundException('Movie not found');

@@ -44,7 +44,7 @@ export class Movie {
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Actor.name }] })
   actors: Types.ObjectId[];
 
-  @Prop({ unique: true })
+  @Prop({ type: String, unique: true })
   slug: string;
 
   @Prop({ default: false })

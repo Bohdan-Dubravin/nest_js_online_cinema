@@ -4,7 +4,8 @@ import { GenreController } from './genre.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { Genre, GenreSchema } from './models/genre.model';
-import { MovieService } from 'src/movie/movie.service';
+
+import { MovieModule } from 'src/movie/movie.module';
 
 @Module({
   providers: [GenreService],
@@ -12,7 +13,7 @@ import { MovieService } from 'src/movie/movie.service';
   imports: [
     MongooseModule.forFeature([{ name: Genre.name, schema: GenreSchema }]),
     ConfigModule,
-    MovieService,
+    MovieModule,
   ],
 })
 export class GenreModule {}

@@ -41,8 +41,8 @@ export class MovieController {
 
   @Post('update-count-opened')
   @HttpCode(200)
-  async updateCount(@Body() slug: string) {
-    return this.movieService.updateCountOpened(slug);
+  async updateCount(@Body() slug: { slug: string }) {
+    return this.movieService.updateCountOpened(slug.slug);
   }
 
   @Get()
