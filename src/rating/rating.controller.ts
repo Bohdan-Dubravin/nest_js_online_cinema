@@ -1,8 +1,8 @@
 import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
 import { RatingService } from './rating.service';
-import { Auth } from 'src/auth/decorators/auth.decorator';
-import { User } from 'src/user/decorators/user.decorator';
-import { IdValidPipe } from 'src/user/pipes/id-validetion.pipe';
+import { Auth } from '../auth/decorators/auth.decorator';
+import { User } from '../user/decorators/user.decorator';
+import { IdValidPipe } from '../user/pipes/id-validetion.pipe';
 import { Types } from 'mongoose';
 import { CreateRatingDto } from './dto/create-genre.dto';
 

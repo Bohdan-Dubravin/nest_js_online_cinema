@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { Genre, GenreSchema } from './models/genre.model';
 
-import { MovieModule } from 'src/movie/movie.module';
+import { MovieModule } from '../movie/movie.module';
 
 @Module({
   providers: [GenreService],

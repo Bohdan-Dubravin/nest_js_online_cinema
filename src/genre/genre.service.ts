@@ -3,7 +3,7 @@ import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Genre, GenreDocument } from './models/genre.model';
 import { CreateGenreDto } from './dto/create-genre.dto';
-import { MovieService } from 'src/movie/movie.service';
+import { MovieService } from '../movie/movie.service';
 
 @Injectable()
 export class GenreService {

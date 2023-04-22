@@ -4,7 +4,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { UserDocument } from 'src/user/models/user.model';
+import { UserDocument } from '../../user/models/user.model';
 
 export class AdminGuard implements CanActivate {
   constructor(private reflector: Reflector) {}

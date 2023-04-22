@@ -10,7 +10,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { Auth } from 'src/auth/decorators/auth.decorator';
+import { Auth } from '../auth/decorators/auth.decorator';
 import { User } from './decorators/user.decorator';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { IdValidPipe } from './pipes/id-validetion.pipe';

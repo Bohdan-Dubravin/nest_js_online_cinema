@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, Types } from 'mongoose';
-import { Actor, ActorDocument } from 'src/actor/models/actor.model';
-import { Genre, GenreDocument } from 'src/genre/models/genre.model';
+import { Actor } from '../../actor/models/actor.model';
+import { Genre } from '../../genre/models/genre.model';
 
 export type MovieDocument = HydratedDocument<Movie>;
 

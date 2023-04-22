@@ -4,7 +4,7 @@ import { RatingController } from './rating.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Rating, RatingSchema } from './models/genre.model';
 import { ConfigModule } from '@nestjs/config';
-import { MovieModule } from 'src/movie/movie.module';
+import { MovieModule } from '../movie/movie.module';
 
 @Module({
   providers: [RatingService],

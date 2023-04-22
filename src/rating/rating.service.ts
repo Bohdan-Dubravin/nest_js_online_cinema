@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Rating, RatingDocument } from './models/genre.model';
 import { Model, Types } from 'mongoose';
-import { MovieService } from 'src/movie/movie.service';
+import { MovieService } from '../movie/movie.service';
 import { CreateRatingDto } from './dto/create-genre.dto';
 
 @Injectable()

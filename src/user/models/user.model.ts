@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, Types } from 'mongoose';
-import { Movie } from 'src/movie/models/movie.model';
+import { Movie } from '../../movie/models/movie.model';
 
 // export interface user {}
 

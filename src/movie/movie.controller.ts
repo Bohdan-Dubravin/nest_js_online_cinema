@@ -9,8 +9,8 @@ import {
   Query,
   Post,
 } from '@nestjs/common';
-import { Auth } from 'src/auth/decorators/auth.decorator';
-import { IdValidPipe } from 'src/user/pipes/id-validetion.pipe';
+import { Auth } from '../auth/decorators/auth.decorator';
+import { IdValidPipe } from '../user/pipes/id-validetion.pipe';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MovieService } from './movie.service';
 import { Types } from 'mongoose';
