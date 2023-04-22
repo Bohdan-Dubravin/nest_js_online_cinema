@@ -18,16 +18,10 @@ async function bootstrap() {
   //   credentials: true,
   // });
 
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
-    next();
-  });
-
   app.enableCors({
     allowedHeaders: '*',
     origin: '*',
+    credentials: true,
   });
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
