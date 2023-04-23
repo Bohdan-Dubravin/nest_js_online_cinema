@@ -31,10 +31,4 @@ import { CorsMiddleware } from './cors/cors.middleware';
     RatingModule,
   ],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(CorsMiddleware)
-      .forRoutes({ path: '*', method: RequestMethod.ALL });
-  }
-}
+export class AppModule {}
