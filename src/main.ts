@@ -18,7 +18,12 @@ async function bootstrap() {
   //   credentials: true,
   // });
 
-  app.enableCors();
+  // app.enableCors({
+  //   allowedHeaders: '*',
+  //   origin: '*',
+  //   credentials: true,
+  //   // Access-Control-Allow-Origin: https://online-cinema-nextjs-pa9fl9bo5-bohdan-dubravin.vercel.app
+  // });
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   await app.listen(process.env.PORT || 4200);

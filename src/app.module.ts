@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -10,6 +10,7 @@ import { FilesModule } from './files/files.module';
 import { ActorModule } from './actor/actor.module';
 import { MovieModule } from './movie/movie.module';
 import { RatingModule } from './rating/rating.module';
+import { CorsMiddleware } from './cors/cors.middleware';
 
 @Module({
   imports: [
@@ -30,4 +31,10 @@ import { RatingModule } from './rating/rating.module';
     RatingModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(CorsMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
