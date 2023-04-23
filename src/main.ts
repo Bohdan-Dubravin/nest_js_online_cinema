@@ -18,7 +18,7 @@ async function bootstrap() {
   //   methods: ['GET', 'POST'],
   //   credentials: true,
   // });
-  app.use();
+
   app.enableCors({
     origin: 'https://online-cinema-nextjs-pa9fl9bo5-bohdan-dubravin.vercel.app',
     allowedHeaders:
