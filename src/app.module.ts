@@ -10,7 +10,6 @@ import { FilesModule } from './files/files.module';
 import { ActorModule } from './actor/actor.module';
 import { MovieModule } from './movie/movie.module';
 import { RatingModule } from './rating/rating.module';
-import { CorsMiddleware } from './cors/cors.middleware';
 
 @Module({
   imports: [
