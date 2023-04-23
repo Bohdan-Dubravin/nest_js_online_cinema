@@ -20,10 +20,10 @@ async function bootstrap() {
   // });
   app.use();
   app.enableCors({
+    origin: 'https://online-cinema-nextjs-pa9fl9bo5-bohdan-dubravin.vercel.app',
     allowedHeaders:
       'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe',
     methods: 'GET,PUT,POST,DELETE,UPDATE,OPTIONS',
-    origin: '*',
     credentials: true,
   });
 
